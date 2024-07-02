@@ -1,0 +1,1 @@
+class OpenprojectTask < ApplicationModel; end

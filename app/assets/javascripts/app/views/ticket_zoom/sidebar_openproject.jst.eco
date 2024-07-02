@@ -1,0 +1,40 @@
+<% for object in @objects: %>
+  <div class="sidebar-block">
+    <div class="task-header">
+      <span class="task-id">ID: <%= object.id %></span>
+      <div class="list-item-delete js-delete" data-object-id="<%= object.id %>" data-type="remove">
+        <%- @Icon('diagonal-cross') %>
+      </div>
+    </div>
+    <a href="<%= @baseuri %>work_packages/<%= object.id %>" class="task-link" target="_blank">
+      <%= object.subject %>
+    </a>
+    <div class="task-description"><%= object.description.raw %></div>
+    <div class="task-details">
+      <span class="task-assignee">
+        <%= @T('assigned_to') %>:
+        <select name="assignee[<%= object.id %>]" class="task-assignee-dropdown js-assignee" data-object-id="<%= object.id %>">
+          <% for assignee in @assignees: %>
+            <option value="<%= assignee._links.principal.href %>" <%= 'selected' if object._links.assignee.href == assignee._links.principal.href %>><%= assignee._links.principal.title %></option>
+          <% end %>
+        </select>
+      </span>
+      <span class="task-status">
+        <%= @T('status') %>:
+        <select name="status[<%= object.id %>]" class="task-status-dropdown js-status" data-object-id="<%= object.id %>">
+          <% for status in @statuses: %>
+            <option value="<%= status._links.self.href %>" <%= 'selected' if object._links.status.href == status._links.self.href %>><%= status.name %></option>
+          <% end %>
+        </select>
+      </span>
+      <span class="task-priority">
+        <%= @T('priority') %>:
+        <select name="priority[<%= object.id %>]" class="task-priority-dropdown js-priority" data-object-id="<%= object.id %>">
+          <% for priority in @priorities: %>
+            <option value="<%= priority._links.self.href %>" <%= 'selected' if object._links.priority.href == priority._links.self.href %>><%= priority.name %></option>
+          <% end %>
+        </select>
+      </span>
+    </div>
+  </div>
+<% end %>

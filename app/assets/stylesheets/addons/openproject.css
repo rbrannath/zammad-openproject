@@ -1,0 +1,40 @@
+.sidebar-block {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-id {
+  font-weight: bold;
+}
+
+.list-item-delete {
+  cursor: pointer;
+  color: red; /* Farbe kann geändert werden */
+}
+
+.task-link {
+  display: block;
+  color: #007bff; /* Bootstrap Link Farbe */
+  margin-top: 5px;
+}
+
+.task-description {
+  margin-top: 10px;
+}
+
+.task-details {
+  margin-top: 10px;
+}
+
+.task-details > span {
+  display: block;
+  margin-top: 5px;
+}
