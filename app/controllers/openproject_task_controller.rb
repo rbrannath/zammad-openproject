@@ -4,7 +4,7 @@ class OpenprojectTaskController < ApplicationController
     ticket_number = params[:ticket_number]
     Rails.logger.info "OpenProject Task Index called with ticket_number: #{ticket_number}"    # Geschäftslogik, um die Aufgabe basierend auf ticket_number zu finden
     openproject_service = OpenprojectService.new
-    filter = [{ customField1: { operator: "=", values: ["Ticket#" + ticket_number] } }].to_json
+    filter = [{ subject: { operator: "~", values: ["Ticket#" + ticket_number] } }].to_json
     response = openproject_service.get("work_packages", { filters: filter })
     if response
       elements = response.dig("_embedded", "elements")
@@ -112,7 +112,7 @@ class OpenprojectTaskController < ApplicationController
 
   def getWorkPackages(ticket_number)
     openproject_service = OpenprojectService.new
-    filter = [{ customField1: { operator: "=", values: ["Ticket#" + ticket_number] } }].to_json
+    filter = [{ subject: { operator: "~", values: ["Ticket#" + ticket_number] } }].to_json
     response = openproject_service.get("projects/3/work_packages", { filters: filter })
     if response
       elements = response.dig("_embedded", "elements")
